@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <a class="logo" routerLink="/">
+    <img
+      [ngStyle]="{ filter: (isDarkTheme$ | async) ? 'invert(1)' : 'invert(0)' }"
+      src="assets/logo2.png"
+      alt="Site logo"
+    />
+  </a>
+
+  <div class="actions">
+    <button mat-icon-button matTooltip="Toggle dark theme" (click)="changeTheme()">
+      <mat-icon>format_color_fill</mat-icon>
+    </button>
+
+    <button mat-icon-button matTooltip="Connect as owner">
+      <mat-icon>security</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

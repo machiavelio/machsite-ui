@@ -1,0 +1,46 @@
+@mixin extract-theme-colors($theme) {
+  $primary-config: map-get($theme, "primary");
+  $accent-config: map-get($theme, "accent");
+  $warn-config: map-get($theme, "warn");
+  $foreground-config: map-get($theme, "foreground");
+  $background-config: map-get($theme, "background");
+
+  --primary-color: #{map-get($primary-config, "default")};
+  --primary-lighter-color: #{map-get($primary-config, "lighter")};
+  --primary-darker-color: #{map-get($primary-config, "darker")};
+  --primary-contrast-color: #{map-get($primary-config, "default-contrast")};
+  --primary-lighter-contrast-color: #{map-get($primary-config, "lighter-contrast")};
+  --primary-darker-contrast-color: #{map-get($primary-config, "darker-contrast")};
+
+  --accent-color: #{map-get($accent-config, "default")};
+  --accent-lighter-color: #{map-get($accent-config, "lighter")};
+  --accent-darker-color: #{map-get($accent-config, "darker")};
+  --accent-contrast-color: #{map-get($accent-config, "default-contrast")};
+  --accent-lighter-contrast-color: #{map-get($accent-config, "lighter-contrast")};
+  --accent-darker-contrast-color: #{map-get($accent-config, "darker-contrast")};
+
+  --warn-color: #{map-get($warn-config, "default")};
+  --warn-lighter-color: #{map-get($warn-config, "lighter")};
+  --warn-darker-color: #{map-get($warn-config, "darker")};
+  --warn-contrast-color: #{map-get($warn-config, "default-contrast")};
+  --warn-lighter-contrast-color: #{map-get($warn-config, "lighter-contrast")};
+  --warn-darker-contrast-color: #{map-get($warn-config, "darker-contrast")};
+
+  --foreground-color: #{map-get($foreground-config, "text")};
+  --foreground-secondary-color: #{map-get($foreground-config, "secondary-text")};
+  --foreground-disabled-color: #{map-get($foreground-config, "disabled-text")};
+
+  --background-color: #{map-get($background-config, "background")};
+  --background-secondary-color: #{map-get($background-config, "app-bar")};
+  --background-third-color: #{map-get($background-config, "status-bar")};
+
+  @if map-get($theme, "is-dark") {
+    --is-dark: 1;
+    --opposite-monochrome-theme-color: white;
+    --toolbar-background-color: #57666f;
+  } @else {
+    --is-dark: 0;
+    --opposite-monochrome-theme-color: black;
+    --toolbar-background-color: #d6e9f5;
+  }
+}
