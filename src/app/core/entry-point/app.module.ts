@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from "@angular/core";
+import { NgModule, isDevMode, APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -8,6 +8,8 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { RouterModule } from "@angular/router";
 import { LayoutPageComponent } from "../layout/layout-page/layout-page.component";
 import { MAT_TOOLTIP_DEFAULT_OPTIONS } from "@angular/material/tooltip";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
+import { ThemeService } from "../services/theme/theme.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,18 @@ import { MAT_TOOLTIP_DEFAULT_OPTIONS } from "@angular/material/tooltip";
       registrationStrategy: "registerWhenStable:30000",
     }),
   ],
-  providers: [{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { disableTooltipInteractivity: true } }],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (themeService: ThemeService) => {
+        return (): void => themeService.configure();
+      },
+      multi: true,
+      deps: [ThemeService],
+    },
+    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { disableTooltipInteractivity: true } },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "outline" } },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

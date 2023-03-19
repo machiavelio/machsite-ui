@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.subtitle {
+  margin-bottom: 1rem; 
+}
+
+.content {
+  padding: 1rem 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

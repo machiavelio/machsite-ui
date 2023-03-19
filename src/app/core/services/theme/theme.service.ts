@@ -23,10 +23,14 @@ export class ThemeService {
 
     this.wasConfigured = true;
 
-    // match system preferences --- window.matchMedia("(prefers-color-scheme: dark)").matches
     const darkThemeKey = localStorage.getItem(this.DARK_THEME_KEY);
 
-    this.isDarkTheme.next(darkThemeKey === "true");
+    const systemThemePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const darkTheme =
+      darkThemeKey === null || darkThemeKey === undefined ? systemThemePreference : darkThemeKey === "true";
+
+    this.isDarkTheme.next(darkTheme);
 
     this.applyDarkTheme(this.isDarkTheme.value);
   }

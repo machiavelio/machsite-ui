@@ -12,6 +12,13 @@ const routes: Routes = [
         loadComponent: () =>
           import("../../pages/home/components/home-page/home-page.component").then((m) => m.HomePageComponent),
       },
+      {
+        path: "library",
+        loadComponent: () =>
+          import("../../pages/library/components/library-page/library-page.component").then(
+            (m) => m.LibraryPageComponent,
+          ),
+      },
     ],
   },
 ];

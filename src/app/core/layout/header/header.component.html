@@ -9,11 +9,32 @@
 
   <div class="actions">
     <button mat-icon-button matTooltip="Toggle dark theme" (click)="changeTheme()">
-      <mat-icon>format_color_fill</mat-icon>
+      <mat-icon>{{ (isDarkTheme$ | async) ? "brightness_7" : "brightness_3" }}</mat-icon>
     </button>
 
-    <button mat-icon-button matTooltip="Connect as owner">
-      <mat-icon>security</mat-icon>
-    </button>
+    <ng-container *ngIf="connected$ | async; else notConnected">
+      <button mat-icon-button matTooltip="Connected" [matMenuTriggerFor]="menu">
+        <mat-icon>verified_user</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="disconnect()">Disconnect</button>
+      </mat-menu>
+    </ng-container>
+
+    <ng-template #notConnected>
+      <button
+        mat-icon-button
+        matTooltip="Connect to access more per user-specific features"
+        [matMenuTriggerFor]="connectMenu"
+      >
+        <mat-icon>security</mat-icon>
+      </button>
+
+      <mat-menu #connectMenu="matMenu">
+        <button mat-menu-item (click)="simpleConnect()">Simple Connect</button>
+        <button mat-menu-item (click)="googleConnect()">Connect with Google</button>
+      </mat-menu>
+    </ng-template>
   </div>
 </mat-toolbar>

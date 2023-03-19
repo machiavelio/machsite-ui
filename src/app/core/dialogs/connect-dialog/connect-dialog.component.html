@@ -1,0 +1,23 @@
+<div class="subtitle">
+  Simple connect. This is a one step process combining both Login and Register. If you have not registered yet, the
+  credentials you enter will create an account automatically.
+</div>
+
+<div class="content">
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </form>
+</div>
+
+<div class="actions">
+  <button mat-button (click)="close()">Close</button>
+  <button mat-button (click)="connect()">Connect</button>
+</div>
