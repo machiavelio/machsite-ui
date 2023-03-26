@@ -6,6 +6,7 @@
 
 .subtitle {
   margin-bottom: 1rem; 
+  text-align: justify;
 }
 
 .content {
@@ -16,4 +17,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.message {
+  text-align: justify;
+  margin-bottom: 1rem;
+  color: var(--warn-color);
 }

@@ -12,6 +12,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { ConnectDialogComponent } from "../../dialogs/connect-dialog/connect-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { DialogService } from "../../services/dialog/dialog.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -27,6 +28,7 @@ import { DialogService } from "../../services/dialog/dialog.service";
     MatTooltipModule,
     MatMenuModule,
     MatDialogModule,
+    HttpClientModule,
   ],
 })
 export class HeaderComponent implements OnInit {
@@ -52,12 +54,12 @@ export class HeaderComponent implements OnInit {
     const dialog = this.dialogService.openSmall(ConnectDialogComponent);
 
     dialog.componentInstance.connected.subscribe(() => {
-      this.userService.connect();
+      //this.userService.connect(user);
     });
   }
 
   googleConnect() {
-    this.userService.connect();
+    //this.userService.connect();
   }
 
   disconnect() {

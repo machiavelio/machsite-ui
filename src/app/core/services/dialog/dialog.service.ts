@@ -1,5 +1,7 @@
 import { Injectable, Type } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
+import { race } from "rxjs";
+import { ConfirmDialogComponent } from "./components/confirm-dialog/confirm-dialog.component";
 
 @Injectable({
   providedIn: "root",
@@ -8,6 +10,12 @@ export class DialogService {
   constructor(private readonly matDialog: MatDialog) {}
 
   open<T>(component: Type<T>, config: MatDialogConfig = {}): MatDialogRef<T> {
+    return this.openDialog(component, config);
+  }
+
+  openMini<T>(component: Type<T>, config: MatDialogConfig = {}): MatDialogRef<T> {
+    config.width = "300px";
+
     return this.openDialog(component, config);
   }
 
@@ -34,6 +42,25 @@ export class DialogService {
     config.height = "100dvh";
 
     return this.openDialog(component, config);
+  }
+
+  openConfirm(message?: string, yes?: string, no?: string) {
+    const dialog = this.openMini(ConfirmDialogComponent);
+    const instance = dialog.componentInstance;
+
+    instance.message = message ?? instance.message;
+    instance.yes = yes ?? instance.yes;
+    instance.no = no ?? instance.no;
+
+    instance.confirmed.subscribe(() => {
+      dialog.close();
+    });
+
+    return {
+      confirmed: instance.confirmed,
+      yesed: instance.yesed,
+      noed: instance.noed,
+    };
   }
 
   private openDialog<T>(component: Type<T>, config: MatDialogConfig = {}): MatDialogRef<T> {

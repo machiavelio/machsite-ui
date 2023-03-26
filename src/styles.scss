@@ -26,6 +26,10 @@ body {
   display: none !important;
 }
 
+[invisible] {
+  visibility: hidden !important;
+}
+
 a[disabled] {
   pointer-events: none;
   cursor: default;
@@ -34,18 +38,6 @@ a[disabled] {
   * {
     color: var(--foreground-disabled-color) !important;
   }
-}
-
-[mat-dialog-title] {
-  text-align: center;
-}
-
-[mat-dialog-content] {
-  padding-top: 20px;
-}
-
-[mat-dialog-actions] {
-  justify-content: space-between !important;
 }
 
 mat-form-field {

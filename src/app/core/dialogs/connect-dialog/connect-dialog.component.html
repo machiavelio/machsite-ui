@@ -4,17 +4,22 @@
 </div>
 
 <div class="content">
-  <form>
-    <mat-form-field appearance="outline">
+  <form [formGroup]="form">
+    <mat-form-field>
       <mat-label>Username</mat-label>
-      <input matInput />
+      <input matInput formControlName="username" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput />
+      <input matInput formControlName="password" />
     </mat-form-field>
   </form>
+</div>
+
+<div *ngIf="invalidPassword" class="message">
+  There is an account linked with this Username but your Password is incorrect. If you wish to create a new account,
+  change the Username
 </div>
 
 <div class="actions">
